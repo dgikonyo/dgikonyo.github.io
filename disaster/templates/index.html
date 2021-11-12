@@ -1,0 +1,27 @@
+{% extends "base_generic.html" %}
+{% block content %}
+    <!--All disaster data is to be viewed here--> 
+    {% if alerts_list %}<!--Will check if there are items in alert list-->     
+    <table class="table">
+        <thead class="thead-light">
+          <tr>
+            <th scope="col">Date Predicted</th>
+            <th scope="col">Disaster Type</th>
+            <th scope="col">Location</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            {% for alert in alerts_list %}
+            <th scope="row"><a href="{{ alert.get_absolute_url }}">{{ alert.dateCreated }}</a></th>
+            <td><a href="{{ alert.get_absolute_url }}">{{ alert.disasterName }}</a></td>
+            <td><a href="{{ alert.get_absolute_url }}">{{ alert.country }}</a></td>
+            <!--alert.get_absolute_url will provide the URL to be used to display the selected record -->
+            {% endfor %}
+          </tr>
+        </tbody>
+      </table>
+      {% else %}
+      <p> No floods predicted yet</p>
+      {% endif %}
+{% endblock %}
