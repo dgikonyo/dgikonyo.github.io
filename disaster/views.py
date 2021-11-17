@@ -1,11 +1,20 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.views import generic
+from django.http import HttpResponseRedirect
+from django.contrib.auth.decorators import login_required
+from django.views.generic.edit import CreateView
+from django.urls import reverse_lazy
+#from django.contrib.auth.mixins import LoginRequiredMixin
 
 # Create your views here.
 from .models import User,DisasterReport,Disaster
 
+#will be used for the form
+from disaster.forms import ReportDisasterForm
+
 """Index is a function used in rendering the details to be included
 in the index.html file"""
+@login_required
 def index(request):
 
     
@@ -49,3 +58,8 @@ class DisasterListView(generic.ListView):
 class DisasterDetailView(generic.DetailView):#meant to show the specific details of a disaster(/disaster/<id>)
     model=DisasterReport
     #if a disaster doesn't exist, the class will generate a 404 error
+
+class ReportCreate(CreateView):
+    model=DisasterReport
+    fields=['reportSubject','disasterName','description','casualties','costOfDamages']
+    success_url = reverse_lazy('index')

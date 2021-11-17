@@ -14,7 +14,7 @@
     
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
               <li><a href="{% url 'index' %}" class="nav-link px-2 link-secondary">Home</a></li>
-              <li><a href="alerts" class="nav-link px-2 link-dark">Alerts</a></li>
+              <li><a href="" class="nav-link px-2 link-dark">Alerts</a></li>
               <li><a href="#" class="nav-link px-2 link-dark">Contact Us</a></li>
             </ul>
     
@@ -27,11 +27,14 @@
                 <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
               </a>
               <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
-                <li><a class="dropdown-item" href="#">Profile</a></li>
-                <li><a class="dropdown-item" href="#">Report Disaster</a></li>
-                <li><a class="dropdown-item" href="#">Delete Account</a></li>
+              {% if user.is_authenticated %}
+                <li class="dropdown-item">{{ user.get_username }}</li>
+                <li><a class="dropdown-item" href="{% url 'disasterreport_form' %}">Report Disaster</a></li>
                 <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="#">Sign out</a></li>
+                <li><a class="dropdown-item" href="{% url 'logout' %}?next={{request.path}}">Sign out</a></li>
+              {% else %}
+                <li><a class="dropdown-item" href="{% url 'login' %}?next={{request.path}}">Sign in</a></li>
+              {% endif %}
               </ul>
             </div>
           </div>
