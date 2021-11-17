@@ -1,24 +1,18 @@
 from django.test import TestCase
 
+from disaster.models import DisasterReport
+
 # Create your tests here.
-class YourTestClass(TestCase):
+class DisasterReportTest(TestCase):
     @classmethod
     def setUpTestData(cls):
-        print("setUpTestData: Run once to set up non-modified data for all class methods.")
-        pass
+        DisasterReport.objects.create(reportID='1e2142f2-30eb-4121-8e95-00ace2b8d749',reportSubject='Drought in Transmara',disasterName='Drought',
+        costOfDamages=3,country='AW',description='uyvsducy6eevydevDKVCUD',casualties=4,validated=True)
 
-    def setUp(self):
-        print("setUp: Run once for every test method to setup clean data.")
-        pass
+    def test_report_subject_label(self):
+        disasterReport=DisasterReport.objects.get()
+        field_label=disasterReport._meta.get_field('reportSubject')
+        self.assertEqual(field_label, 'Report Title')
 
-    def test_false_is_false(self):
-        print("Method: test_false_is_false.")
-        self.assertFalse(False)
-
-    def test_false_is_true(self):
-        print("Method: test_false_is_true.")
-        self.assertTrue(False)
-
-    def test_one_plus_one_equals_two(self):
-        print("Method: test_one_plus_one_equals_two.")
-        self.assertEqual(1 + 1, 2)
+    
+  
