@@ -24,13 +24,16 @@ urlpatterns = [
 from django.urls import include
 
 urlpatterns+=[
-    path('disaster/',include('disaster.urls')),
+    path('v1/disaster/',include('disaster.urls')),
     #this route will forward requests to the path with the pattern disaster/ to disaster.urls
+    
+    #Add Django site authentication urls (for login, logout, password management)
+    path('accounts/', include('django.contrib.auth.urls')),
 ]
 
 from django.views.generic import RedirectView
 urlpatterns+=[
-    path('',RedirectView.as_view(url='disaster/',permanent=True)),
+    path('',RedirectView.as_view(url='v1/disaster/',permanent=True)),
     #will redirect all the links by default to be 'disaster/'
 ]
 

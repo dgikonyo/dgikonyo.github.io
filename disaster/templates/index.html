@@ -1,7 +1,8 @@
 {% extends "base_generic.html" %}
 {% block content %}
     <!--All disaster data is to be viewed here--> 
-    {% if alerts_list %}<!--Will check if there are items in alert list-->     
+    {% if alerts_list %}<!--Will check if there are items in alert list-->   
+    <!---->  
     <table class="table">
         <thead class="thead-light">
           <tr>
@@ -11,17 +12,20 @@
           </tr>
         </thead>
         <tbody>
+          {% for alert in alerts_list %}
           <tr>
-            {% for alert in alerts_list %}
             <th scope="row"><a href="{{ alert.get_absolute_url }}">{{ alert.dateCreated }}</a></th>
             <td><a href="{{ alert.get_absolute_url }}">{{ alert.disasterName }}</a></td>
             <td><a href="{{ alert.get_absolute_url }}">{{ alert.country }}</a></td>
             <!--alert.get_absolute_url will provide the URL to be used to display the selected record -->
-            {% endfor %}
           </tr>
+          {% endfor %}
         </tbody>
       </table>
+
+
       {% else %}
-      <p> No floods predicted yet</p>
+      <p> No floods detected yet</p>
+      
       {% endif %}
 {% endblock %}

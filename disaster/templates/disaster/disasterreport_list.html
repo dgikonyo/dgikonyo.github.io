@@ -1,0 +1,21 @@
+{% extends "base_generic.html" %}
+{% block content %}
+    <!--All disaster data is to be viewed here--> 
+    {% if disasterreport_list %}<!--Will check if there are items in alert list-->  
+    <ul>
+      {% for alert in disasterreport_list %}
+        <div class="list-group">
+          <a href="#" class="list-group-item list-group-item-action flex-column align-items-start active">
+            <div class="d-flex w-100 justify-content-between">
+              <h5 class="mb-1">{{ alert.reportSubject }}</h5>
+              <small>{{ alert.country }}</small>
+            </div>
+            <p class="mb-1">{{ alert.description }}</p>
+            <small>Verified!</small>
+          </a>
+        
+      {% endfor %}
+    {% else %}          
+    <p> No floods predicted yet</p>
+    {% endif %}   
+{% endblock %}

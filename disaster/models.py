@@ -1,6 +1,7 @@
 from django.db import models
 import uuid
 from .country import countryList
+from django.urls import reverse
 
 
 # Create your models here.
@@ -64,9 +65,9 @@ class DisasterReport(models.Model):
     #userID=models.ForeignKey(User, on_delete=models.CASCADE,editable=False)#this is foreignKey relation to the User
     validated=models.BooleanField(default=False)
 
-    def get_absolute_url(self):
-        """Returns the url to access a detail record for a specific disaster report."""
-        return reverse('disaster-report', args=[str(self.reportID)])
+    """"def get_absolute_url(self):
+        #Returns the url to access a detail record for a specific disaster report.
+        return reverse('alerts', args=[str(self.reportID)])"""
     
     def __str__(self):
         return self.reportSubject
