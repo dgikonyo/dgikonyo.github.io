@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 
-import django_heroku
+#import django_heroku
 import os
 
 
@@ -27,19 +27,21 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 #SECRET_KEY = 'django-insecure-t%^r$odm-2#3s9+zj-6-nd#puhz==s26#2ifql_mz(7=$m&l_p'
 
 # SECURITY WARNING: keep the secret key used in production secret!
-#SECRET_KEY = "cg#p$g+j9tax!#a3cup@1$8obt2_+&k3q+pmu)5%asj6yjpkag"
+SECRET_KEY = "0b4kaHJ3Z1wFtgP9irHAWO5Z6pqx6uG7ligJ35974d4="
 
 
 #SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'cg#p$g+j9tax!#a3cup@1$8obt2_+&k3q+pmu)5%asj6yjpkag')
-SECRET_KEY = os.environ.get('SECRET_KEY')
+#SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
-#DEBUG = True
-
-DEBUG = False
 
 
+DEBUG = True
 
-ALLOWED_HOSTS = [".herokuapp.com"]
+#DEBUG = False
+
+
+
+ALLOWED_HOSTS = ["tujue.loca.lt"]
 
 
 # Application definition
@@ -147,7 +149,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = '/'
 
 #meant for hosting on heroku
-django_heroku.settings(locals())
+#django_heroku.settings(locals())
 
 # Heroku: Update database configuration from $DATABASE_URL.
 import dj_database_url
