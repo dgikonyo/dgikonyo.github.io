@@ -27,12 +27,28 @@ class User(models.Model):
 
 class Disaster(models.Model):
     disasterID=models.UUIDField(primary_key=True,default=uuid.uuid4,editable=False)#This ley can't be edited
-    disasterName=models.CharField('Disaster Name',max_length=20)
-    disasterLocation=models.CharField('Location',max_length=20)
-    datePredicted=models.DateTimeField(auto_now_add=True)
+    minTemp=models.CharField('Minimum Temperature',max_length=20)
+    maxTemp=models.CharField('Maximum Temperature',max_length=20)
+    rainfall=models.CharField('Rainfall',max_length=20)
+    evaporation=models.CharField('Evaporation',max_length=20)
+    sunshine=models.CharField('Sunshine',max_length=20)
+    windGustDir=models.CharField('Wind Gust',max_length=20)
+    windGustSpeed=models.CharField('WindGustSpeed',max_length=20)
+    windDirEarly=models.CharField('Wind Direction 9 AM',max_length=20)
+    windDirLate=models.CharField('Wind Direction 3 PM',max_length=20)
+    windSpeedEarly=models.CharField('Wind Speed 9 AM',max_length=20)
+    windSpeedLate=models.CharField('Wind Speed 3 PM',max_length=20)
+    humidityEarly=models.CharField('Humidity 9 AM',max_length=20)
+    humidityLate=models.CharField('Humidity 3 PM',max_length=20)
+    pressureEarly=models.CharField('Pressure 9 AM',max_length=20)
+    pressureLate=models.CharField('Pressure 3 PM',max_length=20)
+    cloudEarly=models.CharField('Cloud 9 AM',max_length=20)
+    cloudLate=models.CharField('Cloud 3 PM',max_length=20)
+    rainToday=models.CharField('Rain Today',max_length=20)
 
+    
     def __str__(self):
-        return self.disasterName
+        return self.rainToday
 
     def get_absolute_url(self):
         """Returns the url to access a detail record for this 
