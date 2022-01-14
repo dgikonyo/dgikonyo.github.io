@@ -8,7 +8,7 @@ async-generator==1.10
 attrs==21.3.0
 backcall==0.2.0
 bleach==4.1.0
-btrfsutil==5.15.1
+#btrfsutil==5.15.1
 CacheControl==0.12.6
 ceph==1.0.0
 ceph-volume==1.0.0
