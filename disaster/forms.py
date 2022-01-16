@@ -36,26 +36,19 @@ class ReportDisasterForm(forms.Form):
         }
 
 
-class DisasterModelForm(ModelForm):
+class DisasterModelForm(forms.Form):
     class Meta:
         model=Disaster
         fields='__all__'
 
-    minTemp=forms.IntegerField()
-    maxTemp=forms.IntegerField()
-    rainfall=forms.IntegerField()
-    evaporation=forms.IntegerField()
-    sunshine=forms.IntegerField()
-    windGustDir=forms.IntegerField()
-    windGustSpeed=forms.IntegerField()
-    windDirEarly=forms.IntegerField()
-    windDirLate=forms.IntegerField()
-    windSpeedEarly=forms.IntegerField()
-    windSpeedLate=forms.IntegerField()
-    humidityEarly=forms.IntegerField()
-    humidityLate=forms.IntegerField()
-    pressureEarly=forms.IntegerField()
-    pressureLate=forms.IntegerField()
-    cloudEarly=forms.IntegerField()
-    cloudLate=forms.IntegerField()
-    rainToday=forms.IntegerField()
+    Sunshine=forms.IntegerField()
+    Humidity9am=forms.IntegerField()
+    Humidity3pm=forms.IntegerField()
+    Pressure9am=forms.IntegerField()
+    Pressure3pm=forms.IntegerField()
+    Cloud9am=forms.IntegerField()
+    Cloud3pm=forms.IntegerField()
+    Temp9am=forms.IntegerField()
+    Temp3pm=forms.IntegerField()
+    RainToday=forms.IntegerField()
+    #Risk_MM=forms.IntegerField()

@@ -4,6 +4,7 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.views.generic.edit import CreateView
 from django.urls import reverse_lazy
+from django.views.decorators.csrf import csrf_protect
 #from django.contrib.auth.mixins import LoginRequiredMixin
 
 
@@ -20,7 +21,8 @@ import pickle
 import json 
 import numpy as np 
 from sklearn import preprocessing 
-from sklearn.externas import joblib
+from sklearn.preprocessing import LabelEncoder
+import joblib
 import pandas as pd 
 from django.shortcuts import render, redirect 
 from django.contrib import messages 
@@ -90,18 +92,59 @@ class DisasterView(viewsets.ModelViewSet):
     queryset=Disaster.objects.all()#anytime I call the request, get all the values in the form
     serializer_class=DisasterSerializer
 
-@api_view(["POST"])#is a decorator, will handle the post requests
-def disasterreject(request):#this is a view
+"""
+def LabelEncValue(df):
+    #The data includes categorical features, so we are going to Label Encode the data
+    lencd=joblib.load("/home/gikonyo/Public/Personal/Projects/django_stuff/tujue/disaster/weatherColumns.pkl")
+    oversampled={}
+    lencoder=LabelEncoder()
+    #newdict=lencoder.fit_transform(lencd.get_params())
+    #newdf=pd.DataFrame(newdict)
+    for col in lencd.select_dtypes(include=['object']).columns:
+        lencoders[col] = LabelEncoder()
+        oversampled[col] = lencoders[col].fit_transform(oversampled[col])
+    
+    newdf=pd.DataFrame(oversampled)
+    return newdf
+"""
+
+#@api_view(["POST"])#is a decorator, will handle the post requests
+def disasterStatus(unit):#this is a view
     try:
-        mdl=joblib.load("/home/gikonyo/Public/Personal/Projects/django_stuff/tujue/disaster/weatherModel.pkl")
-        mydata=request.data
-        unit=np.array(list(mydata.values()))
-        unit=unit.reshape(1,-1)
-        scalers=joblib.load("/home/gikonyo/Public/Personal/Projects/django_stuff/tujue/disaster/weatherModel.pkl")
-        X=scalers.transform(unit)
-        y_pred=mdl.predict(X)
+        model=pickle.load(open("/home/gikonyo/Public/Personal/Projects/django_stuff/tujue/disaster/weatherModel_One.pkl","rb"))
+        scaler=pickle.load(open("/home/gikonyo/Public/Personal/Projects/django_stuff/tujue/disaster/weatherScaler.pkl","rb"))
+        X=scaler.transform(unit)
+        y_pred=model.predict(X)
         newdf=pd.DataFrame(y_pred)
         newdf=newdf.replace({1:'rain',0:'no rain'})
         return JsonResponse('Tomorrow we have predicted {}'.format(newdf),safe=False)
     except ValueError as e:
         return Response(e.args[0],status.HTTP_400_BAD_REQUEST)
+
+        
+def FormView(request):
+    if request.method=='POST':
+        form=DisasterModelForm(request.POST)
+        if form.is_valid():
+            Sunshine=form.cleaned_data['Sunshine']
+            Humidity9am=form.cleaned_data['Humidity9am']
+            Humidity3pm=form.cleaned_data['Humidity3pm']
+            Pressure9am=form.cleaned_data['Pressure9am']
+            Pressure3pm=form.cleaned_data['Pressure3pm']
+            Cloud9am=form.cleaned_data['Cloud9am']
+            Cloud3pm=form.cleaned_data['Cloud3pm']
+            Temp9am=form.cleaned_data['Temp9am']
+            Temp3pm=form.cleaned_data['Temp3pm']
+            RainToday=form.cleaned_data['RainToday']
+            #Risk_MM=form.cleaned_data['RISK_MM']
+            formDict=(request.POST).dict()#will pick the POST data and saves it into a dictionary
+            formDf=pd.DataFrame(formDict,index=[0])
+            result=disasterStatus(formDf)
+            print(result)
+            #print(disasterreject(LabelEncValue(formDf)))
+            #print(LabelEncValue(formDf))
+
+          
+    form=DisasterModelForm()
+
+    return render(request,'disaster/disaster_form.html',{'form':form})
