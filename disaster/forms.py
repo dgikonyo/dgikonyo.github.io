@@ -51,4 +51,4 @@ class DisasterModelForm(forms.Form):
     Temp9am=forms.IntegerField()
     Temp3pm=forms.IntegerField()
     RainToday=forms.IntegerField()
-    #Risk_MM=forms.IntegerField()
+    RISK_MM=forms.IntegerField()

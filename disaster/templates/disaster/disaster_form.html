@@ -9,11 +9,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Data Entry</title>
 </head>
-  <form action="" method="post">
-    {% csrf_token %}
-    <table>
-    {{ form.as_table }}
-    </table>
+<form method="post" action="">
+  
+  <div class="row gtr-uniform">
+    <div class="col-6 col-12-xsmall">
+      <input type="number" name="sunshine" id="sunshine"  placeholder="Sunshine" Required />
+    </div>
+    <div class="col-6 col-12-xsmall">
+      <input type="number" name="humidity9am" id="humidity9am"  placeholder="Humidity9am" Required />
+    </div>
+    <div class="col-6 col-12-xsmall">
+      <input type="number" name="humidity3pm" id="humidity3pm"  placeholder="Humidity3pm" Required />
+    </div>
+    <div class="col-6 col-12-xsmall">
+      <input type="number" name="pressure9am" id="pressure9am"  placeholder="Pressure9am" Required />
+    </div>
+    <div class="col-6 col-12-xsmall">
+      <input type="number" name="pressure3pm" id="pressure3pm"  placeholder="Pressure3pm" Required />
+    </div>
+    <div class="col-6 col-12-xsmall">
+      <input type="number" name="cloud9am" id="cloud9am"  placeholder="Cloud9am" Required />
+    </div>
+    <div class="col-6 col-12-xsmall">
+      <input type="number" name="cloud3pm" id="cloud3pm"  placeholder="Cloud3pm" Required />
+    </div>
+    <div class="col-6 col-12-xsmall">
+      <input type="number" name="temp9am" id="temp9am"  placeholder="Temp9am" Required />
+    </div>
+    <div class="col-6 col-12-xsmall">
+      <input type="number" name="temp3pm" id="temp3pm"  placeholder="Temp3pm" Required />
+    </div>
+    <div class="col-6 col-12-xsmall">
+      <input type="number" name="raintoday" id="raintoday"  placeholder="Rain Today" Required />
+    </div>
+    <div class="col-6 col-12-xsmall">
+      <input type="number" name="risk_mm" id="risk_mm"  placeholder="RISK_MM" Required />
+    </div>
+
     <input type="submit" value="Submit">
   </form>
 {% endblock %}

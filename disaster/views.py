@@ -6,7 +6,7 @@ from django.views.generic.edit import CreateView
 from django.urls import reverse_lazy
 from django.views.decorators.csrf import csrf_protect
 #from django.contrib.auth.mixins import LoginRequiredMixin
-
+from django.http import HttpResponseRedirect
 
 from rest_framework import viewsets
 from rest_framework import permissions
@@ -92,59 +92,69 @@ class DisasterView(viewsets.ModelViewSet):
     queryset=Disaster.objects.all()#anytime I call the request, get all the values in the form
     serializer_class=DisasterSerializer
 
-"""
-def LabelEncValue(df):
-    #The data includes categorical features, so we are going to Label Encode the data
-    lencd=joblib.load("/home/gikonyo/Public/Personal/Projects/django_stuff/tujue/disaster/weatherColumns.pkl")
-    oversampled={}
-    lencoder=LabelEncoder()
-    #newdict=lencoder.fit_transform(lencd.get_params())
-    #newdf=pd.DataFrame(newdict)
-    for col in lencd.select_dtypes(include=['object']).columns:
-        lencoders[col] = LabelEncoder()
-        oversampled[col] = lencoders[col].fit_transform(oversampled[col])
-    
-    newdf=pd.DataFrame(oversampled)
-    return newdf
-"""
 
-#@api_view(["POST"])#is a decorator, will handle the post requests
+"""#@api_view(["POST"])#is a decorator, will handle the post requests
 def disasterStatus(unit):#this is a view
     try:
         model=pickle.load(open("/home/gikonyo/Public/Personal/Projects/django_stuff/tujue/disaster/weatherModel_One.pkl","rb"))
-        scaler=pickle.load(open("/home/gikonyo/Public/Personal/Projects/django_stuff/tujue/disaster/weatherScaler.pkl","rb"))
-        X=scaler.transform(unit)
-        y_pred=model.predict(X)
-        newdf=pd.DataFrame(y_pred)
-        newdf=newdf.replace({1:'rain',0:'no rain'})
-        return JsonResponse('Tomorrow we have predicted {}'.format(newdf),safe=False)
+        y_pred=model.predict(unit)
+        newdf=pd.DataFrame(y_pred)     
+        #newdf=newdf.replace({1:'rain',0:'no rain'})
+        return newdf
     except ValueError as e:
-        return Response(e.args[0],status.HTTP_400_BAD_REQUEST)
+        return Response(e.args[0],status.HTTP_400_BAD_REQUEST)"""
 
         
 def FormView(request):
     if request.method=='POST':
-        form=DisasterModelForm(request.POST)
-        if form.is_valid():
-            Sunshine=form.cleaned_data['Sunshine']
-            Humidity9am=form.cleaned_data['Humidity9am']
-            Humidity3pm=form.cleaned_data['Humidity3pm']
-            Pressure9am=form.cleaned_data['Pressure9am']
-            Pressure3pm=form.cleaned_data['Pressure3pm']
-            Cloud9am=form.cleaned_data['Cloud9am']
-            Cloud3pm=form.cleaned_data['Cloud3pm']
-            Temp9am=form.cleaned_data['Temp9am']
-            Temp3pm=form.cleaned_data['Temp3pm']
-            RainToday=form.cleaned_data['RainToday']
-            #Risk_MM=form.cleaned_data['RISK_MM']
-            formDict=(request.POST).dict()#will pick the POST data and saves it into a dictionary
-            formDf=pd.DataFrame(formDict,index=[0])
-            result=disasterStatus(formDf)
-            print(result)
-            #print(disasterreject(LabelEncValue(formDf)))
-            #print(LabelEncValue(formDf))
+        #form=DisasterModelForm(request.POST)
+        #if form.is_valid():
+        """Sunshine=form.cleaned_data['Sunshine']
+        Humidity9am=form.cleaned_data['Humidity9am']
+        Humidity3pm=form.cleaned_data['Humidity3pm']
+        Pressure9am=form.cleaned_data['Pressure9am']
+        Pressure3pm=form.cleaned_data['Pressure3pm']
+        Cloud9am=form.cleaned_data['Cloud9am']
+        Cloud3pm=form.cleaned_data['Cloud3pm']
+        Temp9am=form.cleaned_data['Temp9am']
+        Temp3pm=form.cleaned_data['Temp3pm']
+        RainToday=form.cleaned_data['RainToday']
+        RISK_MM=form.cleaned_data['RISK_MM']
+        formDict=(request.POST).dict()  #will pick the POST data and saves it into a dictionary
+        formList=list(formDict)
+        formNp=np.array(formList)#form data converted to numpy array"""
 
-          
+        sunshine=request.POST["sunshine"]
+        humidity9am=request.POST["humidity9am"]
+        humidity3pm=request.POST["humidity3pm"]
+        pressure9am=request.POST["pressure9am"]
+        pressure3pm=request.POST["pressure3pm"]
+        cloud9am=request.POST["cloud9am"]
+        cloud3pm=request.POST["cloud3pm"]
+        temp9am=request.POST["temp9am"]
+        temp3pm=request.POST["temp3pm"]
+        raintoday=request.POST["raintoday"]
+        risk_mm=request.POST["risk_mm"]
+        
+        #formList=[sunshine,humidity9am,humidity3pm,pressure9am,pressure3pm,
+        #         cloud9am,cloud3pm,temp9am,temp3pm,raintoday,risk_mm]
+        int_features=[int (x) for x in request.POST.values()]
+        #formDict=(request.POST).dict()
+        #formList=list(formDict)
+        formNp=[np.array(int_features)]#will form numpy array
+
+        model=pickle.load(open("/home/gikonyo/Public/Personal/Projects/django_stuff/tujue/disaster/weatherModel_One.pkl","rb"))
+        y_pred=model.predict(formNp)
+        newdf=pd.DataFrame(y_pred)    
+        newdf 
+
+        context={
+            'newdf':newdf,
+        }
+            #newdf=newdf.replace({1:'rain',0:'no rain'})
+
+        return render(request,'disaster/status.html',context)#will redirect to status.html
+            
     form=DisasterModelForm()
 
-    return render(request,'disaster/disaster_form.html',{'form':form})
+    return render(request,'disaster/disaster_form.html',{"form":form})
