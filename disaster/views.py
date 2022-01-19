@@ -134,7 +134,7 @@ def FormView(request):
         temp9am=request.POST["temp9am"]
         temp3pm=request.POST["temp3pm"]
         raintoday=request.POST["raintoday"]
-        risk_mm=request.POST["risk_mm"]
+        #risk_mm=request.POST["risk_mm"]
         
         #formList=[sunshine,humidity9am,humidity3pm,pressure9am,pressure3pm,
         #         cloud9am,cloud3pm,temp9am,temp3pm,raintoday,risk_mm]
@@ -145,13 +145,17 @@ def FormView(request):
 
         model=pickle.load(open("/home/gikonyo/Public/Personal/Projects/django_stuff/tujue/disaster/weatherModel_One.pkl","rb"))
         y_pred=model.predict(formNp)
-        newdf=pd.DataFrame(y_pred)    
-        newdf 
+        newdf=pd.DataFrame(y_pred)
+            
+        
+        prediction=newdf.replace({1:'rain',0:'no rain'})
+        
 
         context={
-            'newdf':newdf,
+            #'newdf':newdf,
+            'prediction':prediction,
         }
-            #newdf=newdf.replace({1:'rain',0:'no rain'})
+            
 
         return render(request,'disaster/status.html',context)#will redirect to status.html
             
