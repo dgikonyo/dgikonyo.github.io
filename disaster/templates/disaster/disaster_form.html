@@ -1,51 +1,52 @@
 {% extends "base_generic.html" %}
-
 {% block content %}
  
   <!--<p{% if book_instance.is_overdue %} class="text-danger"{% endif %}>Due date: {{ book_instance.due_back }}</p>-->
-  <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Entry</title>
-</head>
-<form method="post" action="">
-  
-  <div class="row gtr-uniform">
-    <div class="col-6 col-12-xsmall">
-      <input type="number" name="sunshine" id="sunshine"  placeholder="Sunshine" Required />
-    </div>
-    <div class="col-6 col-12-xsmall">
-      <input type="number" name="humidity9am" id="humidity9am"  placeholder="Humidity9am" Required />
-    </div>
-    <div class="col-6 col-12-xsmall">
-      <input type="number" name="humidity3pm" id="humidity3pm"  placeholder="Humidity3pm" Required />
-    </div>
-    <div class="col-6 col-12-xsmall">
-      <input type="number" name="pressure9am" id="pressure9am"  placeholder="Pressure9am" Required />
-    </div>
-    <div class="col-6 col-12-xsmall">
-      <input type="number" name="pressure3pm" id="pressure3pm"  placeholder="Pressure3pm" Required />
-    </div>
-    <div class="col-6 col-12-xsmall">
-      <input type="number" name="cloud9am" id="cloud9am"  placeholder="Cloud9am" Required />
-    </div>
-    <div class="col-6 col-12-xsmall">
-      <input type="number" name="cloud3pm" id="cloud3pm"  placeholder="Cloud3pm" Required />
-    </div>
-    <div class="col-6 col-12-xsmall">
-      <input type="number" name="temp9am" id="temp9am"  placeholder="Temp9am" Required />
-    </div>
-    <div class="col-6 col-12-xsmall">
-      <input type="number" name="temp3pm" id="temp3pm"  placeholder="Temp3pm" Required />
-    </div>
-    <div class="col-6 col-12-xsmall">
-      <input type="number" name="raintoday" id="raintoday"  placeholder="Rain Today" Required />
-    </div>
-    <!--<div class="col-6 col-12-xsmall">
-      <input type="number" name="risk_mm" id="risk_mm"  placeholder="RISK_MM" Required />
-    </div>-->
+  <main id="main">
+    <section class="services">
+      <div class="container">
+        <form method="post" action="">
+          <div class="row gtr-uniform">
+            <div class="col-6 col-12-xsmall">
+              <input type="number" name="sunshine" id="sunshine"  placeholder="Sunshine" Required />
+            </div>
+            <div class="col-6 col-12-xsmall">
+              <input type="number" name="humidity9am" id="humidity9am"  placeholder="Humidity9am" Required />
+            </div>
+            <div class="col-6 col-12-xsmall">
+              <input type="number" name="humidity3pm" id="humidity3pm"  placeholder="Humidity3pm" Required />
+            </div>
+            <div class="col-6 col-12-xsmall">
+              <input type="number" name="pressure9am" id="pressure9am"  placeholder="Pressure9am" Required />
+            </div>
+            <div class="col-6 col-12-xsmall">
+              <input type="number" name="pressure3pm" id="pressure3pm"  placeholder="Pressure3pm" Required />
+            </div>
+            <div class="col-6 col-12-xsmall">
+              <input type="number" name="cloud9am" id="cloud9am"  placeholder="Cloud9am" Required />
+            </div>
+            <div class="col-6 col-12-xsmall">
+              <input type="number" name="cloud3pm" id="cloud3pm"  placeholder="Cloud3pm" Required />
+            </div>
+            <div class="col-6 col-12-xsmall">
+              <input type="number" name="temp9am" id="temp9am"  placeholder="Temp9am" Required />
+            </div>
+            <div class="col-6 col-12-xsmall">
+              <input type="number" name="temp3pm" id="temp3pm"  placeholder="Temp3pm" Required />
+            </div>
+            <div class="col-6 col-12-xsmall">
+              <input type="number" name="raintoday" id="raintoday"  placeholder="Rain Today" Required />
+            </div>
+            <!--<div class="col-6 col-12-xsmall">
+              <input type="number" name="risk_mm" id="risk_mm"  placeholder="RISK_MM" Required />
+            </div>-->
+        
+            <input type="submit" value="Submit">
+          </div>
+        </form>
+      </div>
+    </section> 
+  </main>
 
-    <input type="submit" value="Submit">
-  </form>
+
 {% endblock %}

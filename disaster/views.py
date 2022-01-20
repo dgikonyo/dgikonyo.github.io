@@ -62,7 +62,8 @@ def index(request):
     #render the html template index.html with data in the context variable
     return render(request, 'index.html',context=context)
 
-
+def contactUs(request):
+    return render(request,'contact.html')
 
 def alerts(request):
     return render(request,'alerts.html')

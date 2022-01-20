@@ -1,10 +1,18 @@
 <!--This template will give the information for the specific Disaster record that has been selected-->
 {% extends "base_generic.html" %}
 {% block content %}
-    <h1>Name: {{ alert.disasterName }}</h1>
-
-    <p><strong>Date Reported:</strong>{{ alert.dateCreated }}</p>
-    <p><strong>Country:</strong>{{ alert.country }}</p>
-    <p><strong>Cost of Damages: </strong>{{ alert.costOfDamages }}</p>
-    <p><strong>Description: </strong>{{ alert.description }}</p>
+<main id="main">
+    <section class="services">
+        <div class="container">
+            <h1>Name: {{ alert.disasterName }}</h1>
+    
+            <p><strong>Date Reported:</strong>{{ alert.dateCreated }}</p>
+            <p><strong>Country:</strong>{{ alert.country }}</p>
+            <p><strong>Cost of Damages: </strong>{{ alert.costOfDamages }}</p>
+            <p><strong>Description: </strong>{{ alert.description }}</p>
+    
+        </div>
+    </section> 
+</main>
+   
 {% endblock %}

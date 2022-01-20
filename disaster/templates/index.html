@@ -1,31 +1,36 @@
 {% extends "base_generic.html" %}
 {% block content %}
     <!--All disaster data is to be viewed here--> 
-    {% if alerts_list %}<!--Will check if there are items in alert list-->   
-    <!---->  
-    <table class="table">
-        <thead class="thead-light">
-          <tr>
-            <th scope="col">Date Predicted</th>
-            <th scope="col">Disaster Type</th>
-            <th scope="col">Location</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for alert in alerts_list %}
-          <tr>
-            <th scope="row"><a href="{{ alert.get_absolute_url }}">{{ alert.dateCreated }}</a></th>
-            <td><a href="{{ alert.get_absolute_url }}">{{ alert.disasterName }}</a></td>
-            <td><a href="{{ alert.get_absolute_url }}">{{ alert.country }}</a></td>
-            <!--alert.get_absolute_url will provide the URL to be used to display the selected record -->
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
+    <section id="hero" class="d-flex justify-cntent-center align-items-center">
+      <div id="heroCarousel" class="container carousel carousel-fade" data-bs-ride="carousel" data-bs-interval="5000">
+  
+        <!-- Slide 1 -->
+        <div class="carousel-item active">
+          <div class="carousel-container">
+            <h2 class="animate__animated animate__fadeInDown">Karibu <span><b>Tujue</b> anga</span></h2>
+            <p class="animate__animated animate__fadeInUp">Tujue provided flood alerts and flood predictions.Click <a href="{% url 'alerts' %}">here</a>to view flood alerts</p>
+            <a href="{% url 'alerts' %}" class="btn-get-started animate__animated animate__fadeInUp">Check alerts</a>
+          </div>
+        </div>
+  
+        <!-- Slide 2 -->
+        <div class="carousel-item">
+          <div class="carousel-container">
+            <h2 class="animate__animated animate__fadeInDown">Prediciting floods just got better</h2>
+            <p class="animate__animated animate__fadeInUp">You can now predict floods! Click the button below</p>
+            <a href="{% url 'FormView'%}" class="btn-get-started animate__animated animate__fadeInUp">Make Predictions</a>
+          </div>
+        </div>
 
-
-      {% else %}
-      <p> No floods detected yet</p>
-      
-      {% endif %}
+  
+        <a class="carousel-control-prev" href="#heroCarousel" role="button" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon bx bx-chevron-left" aria-hidden="true"></span>
+        </a>
+  
+        <a class="carousel-control-next" href="#heroCarousel" role="button" data-bs-slide="next">
+          <span class="carousel-control-next-icon bx bx-chevron-right" aria-hidden="true"></span>
+        </a>
+  
+      </div>
+    </section><!-- End Hero -->
 {% endblock %}
