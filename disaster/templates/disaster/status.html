@@ -1,15 +1,29 @@
 {% extends "base_generic.html" %}
+{% block title %}Tujue-Status{% endblock %}
 
 {% block content %}
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Status</title>
-</head>
-<body>
+<main id="main">
+  <section class="breadcrumbs">
+    <div class="container">
+
+      <div class="d-flex justify-content-between align-items-center">
+        <h2>Prediction Results</h2>
+        <ol>
+          <li><a href="{% url 'disasterreport_form' %}">Make Report</a></li>
+        </ol>
+      </div>
+
+    </div>
+  </section><!-- End Contact Section -->
+  <figure name="status_figure">
+    <blockquote class="blockquote">
+      <p>   {{ prediction }} </p>
+    </blockquote>
+    <figcaption class="blockquote-footer">
+      <b>Possibility of Flood:</b> <cite title="Source Title">   {{ flood_alert }}</cite>
+    </figcaption>
+  </figure>
+</main>
    <!--{{ newdf }}-->
-   {{ prediction }}
-</body>
 
 {% endblock %}

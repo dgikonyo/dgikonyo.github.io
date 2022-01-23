@@ -14,7 +14,7 @@ body {
 }
 
 a {
-  color: #4fa6d5;
+  color: #ffffff;
   text-decoration: none;
 }
 
@@ -67,9 +67,11 @@ h1, h2, h3, h4, h5, h6, .font-primary {
   transition: all 0.5s;
   background: #1e4356;
 }
+/*
 #header.header-transparent {
-  background: none;
+  background: #1e4356;
 }
+*/
 #header.header-scrolled {
   background: rgba(30, 67, 86, 0.8);
   height: 60px;
@@ -123,7 +125,7 @@ h1, h2, h3, h4, h5, h6, .font-primary {
   padding: 10px 0 10px 30px;
   font-family: "Open Sans", sans-serif;
   font-size: 14px;
-  color: #fff;
+  color: #ffffff;
   white-space: nowrap;
   transition: 0.3s;
 }
@@ -2061,4 +2063,8 @@ form{
 .btn:hover, .btn:focus{
 	background-color: #008080;
 	color:#fff;
+}
+
+.status_figure{
+  padding-top: 232px;
 }

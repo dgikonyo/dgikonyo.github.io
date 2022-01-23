@@ -34,6 +34,9 @@ from .serializers import DisasterSerializer
 
 #will be used for the form
 from disaster.forms import ReportDisasterForm
+from .forms import NewUserForm
+from django.contrib.auth import login
+from django.contrib import messages
 
 """Index is a function used in rendering the details to be included
 in the index.html file"""
@@ -135,26 +138,28 @@ def FormView(request):
         temp9am=request.POST["temp9am"]
         temp3pm=request.POST["temp3pm"]
         raintoday=request.POST["raintoday"]
-        #risk_mm=request.POST["risk_mm"]
-        
-        #formList=[sunshine,humidity9am,humidity3pm,pressure9am,pressure3pm,
-        #         cloud9am,cloud3pm,temp9am,temp3pm,raintoday,risk_mm]
-        int_features=[int (x) for x in request.POST.values()]
-        #formDict=(request.POST).dict()
-        #formList=list(formDict)
+
+        int_features=[int (x) for x in request.POST.values()]#will create a list called int_features
+
         formNp=[np.array(int_features)]#will form numpy array
 
         model=pickle.load(open("/home/gikonyo/Public/Personal/Projects/django_stuff/tujue/disaster/weatherModel_One.pkl","rb"))
         y_pred=model.predict(formNp)
-        newdf=pd.DataFrame(y_pred)
+        newdf=pd.DataFrame(y_pred)            
             
         
-        prediction=newdf.replace({1:'rain',0:'no rain'})
+        prediction=newdf.replace({1:'Expecting rain tomorrow',0:'Expecting rain tomorrow'})
         
+        if sunshine>="15" and humidity9am>="110" and humidity3pm>="100" and pressure9am>="1034":
+            flood_alert="Expecting Flood"
+        else:
+            flood_alert="No Flood expected"
+
 
         context={
             #'newdf':newdf,
             'prediction':prediction,
+            'flood_alert':flood_alert
         }
             
 
@@ -163,3 +168,27 @@ def FormView(request):
     form=DisasterModelForm()
 
     return render(request,'disaster/disaster_form.html',{"form":form})
+
+def register_request(request):
+    if request.method== "POST":
+        form=NewUserForm(request.POST)
+        if form.is_valid():
+            """username=request.POST["username"]
+            email=request.POST["email"]
+            password=request.POST["password"]
+            password2=request.POST["password2"]
+
+            registration_features=[x for x in request.POST.values()]"""
+            user=form.save()
+            login(request,user)
+            messages.success(request,"Registration successful.")
+            return render(request,'index.html')
+        messages.error(request,"Unsuccessful registration.Invalid information.")
+
+    form=NewUserForm()
+    return render(request, 'registration/register.html', context={'register_form':form})
+        
+
+
+
+

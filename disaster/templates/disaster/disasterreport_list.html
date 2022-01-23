@@ -2,6 +2,19 @@
 {% block content %}
     <!--All disaster data is to be viewed here--> 
     {% if disasterreport_list %}<!--Will check if there are items in alert list-->  
+  <main id="main">
+    <section class="breadcrumbs">
+      <div class="container">
+
+        <div class="d-flex justify-content-between align-items-center">
+          <h2>Flood Alerts</h2>
+          <ol>
+            <li><a href="{% url 'FormView' %}">Make Prediction</a></li>
+          </ol>
+        </div>
+
+      </div>
+    </section><!-- End Contact Section -->
     <ul>
       {% for alert in disasterreport_list %}
         <div class="list-group">
@@ -17,5 +30,6 @@
       {% endfor %}
     {% else %}          
     <p> No floods predicted yet</p>
-    {% endif %}   
+    {% endif %}  
+  </main> 
 {% endblock %}

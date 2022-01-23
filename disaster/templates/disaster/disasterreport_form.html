@@ -1,7 +1,20 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-<section class="services">
+<main id="main">
+    <section class="breadcrumbs">
+        <div class="container">
+  
+          <div class="d-flex justify-content-between align-items-center">
+            <h2>Report Disaster</h2>
+            <ol>
+              <li><a href="{% url 'index' %}">Home</a></li>
+            </ol>
+          </div>
+  
+        </div>
+      </section><!-- End Contact Section -->
+    <section class="services">
     <div class="container">
         <form action="" method="post">
         {% csrf_token %}
@@ -11,6 +24,7 @@
         <input type="submit" value="Submit">
     </form>
     </div>
-</section>
+    </section>
+</main>
 
 {% endblock %}

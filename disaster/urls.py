@@ -13,6 +13,6 @@ urlpatterns = [
     path('status/',views.FormView,name='status'),
     path('form/',views.FormView,name='FormView'),
     path('contact/',views.contactUs,name='constactUs'),
-    path('accounts/', include('django.contrib.auth.urls')), # new
+    path("register",views.register_request,name="register"),
 ]
 

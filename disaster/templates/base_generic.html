@@ -9,7 +9,6 @@
     <meta content="" name="description">
     <meta content="" name="keywords">
         <!-- Favicons -->
-    <link href="{% static 'assets/img/favicon.png' %}" rel="icon">
     <link href="{% static 'assets/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
   
     <!-- Google Fonts -->
@@ -24,6 +23,7 @@
     <link href="{% static 'assets/vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
     <link href="{% static 'assets/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
     <link href="{% static 'assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+    <link href="{% static 'disaster/static/assets/css/registration.css' %}" rel="stylesheet">
   
     <!-- Template Main CSS File -->
     <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
@@ -67,8 +67,9 @@
           </ul>
       </div>
     </header><!-- End Header -->
-
-    {% block content %}{% endblock%}
+    
+    {% block content %}
+    {% endblock%}
 
     <footer id="footer" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="500">
             <div class="footer-top">
@@ -123,6 +124,7 @@
     </footer><!-- End Footer -->
         
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
         <!-- Vendor JS Files -->
   <script src="{% static 'assets/vendor/purecounter/purecounter.js' %}"></script>
   <script src="{% static 'assets/vendor/aos/aos.js' %}"></script>
@@ -135,6 +137,8 @@
 
   <!-- Template Main JS File -->
   <script src="{% static 'assets/js/main.js' %}"></script>
+
+  
   </body>
       
 </html>

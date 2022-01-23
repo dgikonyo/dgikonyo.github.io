@@ -5,6 +5,8 @@ from django.contrib.auth.decorators import login_required
 from django.utils.translation import gettext_lazy as _
 from disaster.models import DisasterReport
 from .models import Disaster
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 
 @login_required
 class ReportDisasterForm(forms.Form):
@@ -52,3 +54,20 @@ class DisasterModelForm(forms.Form):
     Temp3pm=forms.IntegerField()
     RainToday=forms.IntegerField()
     RISK_MM=forms.IntegerField()
+
+
+#registration form
+class NewUserForm(UserCreationForm):
+    email=forms.EmailField(required=True)
+
+    class Meta:
+        model=User
+        fields=("username","email","password1","password2")
+
+    def save(self, commit=True):
+        user=super(NewUserForm,self).save(commit=False)
+        user.email=self.cleaned_data['email']
+
+        if commit:
+            user.save()
+        return user

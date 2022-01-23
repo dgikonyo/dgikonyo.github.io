@@ -1,47 +1,62 @@
 {% extends "base_generic.html" %}
+{% block title %}Tujue-Flood Prediction{% endblock %}
 {% block content %}
  
   <!--<p{% if book_instance.is_overdue %} class="text-danger"{% endif %}>Due date: {{ book_instance.due_back }}</p>-->
+      <!-- ======= Contact Section ======= -->
+
   <main id="main">
+    <section class="breadcrumbs">
+      <div class="container">
+
+        <div class="d-flex justify-content-between align-items-center">
+          <h2>Weather Collection form</h2>
+          <ol>
+            <li><a href="{% url 'disasterreport_form' %}">Report Disaster</a></li>
+          </ol>
+        </div>
+
+      </div>
+    </section><!-- End Contact Section -->
     <section class="services">
       <div class="container">
         <form method="post" action="">
           <div class="row gtr-uniform">
             <div class="col-6 col-12-xsmall">
-              <input type="number" name="sunshine" id="sunshine"  placeholder="Sunshine" Required />
+              <input type="text" name="sunshine" id="sunshine"  placeholder="Sunshine" Required step=any/>
             </div>
             <div class="col-6 col-12-xsmall">
-              <input type="number" name="humidity9am" id="humidity9am"  placeholder="Humidity9am" Required />
+              <input type="number" name="humidity9am" id="humidity9am"  placeholder="Humidity9am" Required step=any/>
             </div>
             <div class="col-6 col-12-xsmall">
-              <input type="number" name="humidity3pm" id="humidity3pm"  placeholder="Humidity3pm" Required />
+              <input type="number" name="humidity3pm" id="humidity3pm"  placeholder="Humidity3pm" Required step=any/>
             </div>
             <div class="col-6 col-12-xsmall">
-              <input type="number" name="pressure9am" id="pressure9am"  placeholder="Pressure9am" Required />
+              <input type="number" name="pressure9am" id="pressure9am"  placeholder="Pressure9am" Required step=any/>
             </div>
             <div class="col-6 col-12-xsmall">
-              <input type="number" name="pressure3pm" id="pressure3pm"  placeholder="Pressure3pm" Required />
+              <input type="number" name="pressure3pm" id="pressure3pm"  placeholder="Pressure3pm" Required step=any/>
             </div>
             <div class="col-6 col-12-xsmall">
-              <input type="number" name="cloud9am" id="cloud9am"  placeholder="Cloud9am" Required />
+              <input type="number" name="cloud9am" id="cloud9am"  placeholder="Cloud9am" Required step=any/>
             </div>
             <div class="col-6 col-12-xsmall">
-              <input type="number" name="cloud3pm" id="cloud3pm"  placeholder="Cloud3pm" Required />
+              <input type="number" name="cloud3pm" id="cloud3pm"  placeholder="Cloud3pm" Required step=any/>
             </div>
             <div class="col-6 col-12-xsmall">
-              <input type="number" name="temp9am" id="temp9am"  placeholder="Temp9am" Required />
+              <input type="number" name="temp9am" id="temp9am"  placeholder="Temp9am" Required step=any/>
             </div>
             <div class="col-6 col-12-xsmall">
-              <input type="number" name="temp3pm" id="temp3pm"  placeholder="Temp3pm" Required />
+              <input type="number" name="temp3pm" id="temp3pm"  placeholder="Temp3pm" Required step=any/>
             </div>
             <div class="col-6 col-12-xsmall">
-              <input type="number" name="raintoday" id="raintoday"  placeholder="Rain Today" Required />
+              <input type="number" name="raintoday" id="raintoday"  placeholder="Rain Today" Required step=any/>
             </div>
             <!--<div class="col-6 col-12-xsmall">
               <input type="number" name="risk_mm" id="risk_mm"  placeholder="RISK_MM" Required />
             </div>-->
         
-            <input type="submit" value="Submit">
+            <input type="submit" value="Submit"> 
           </div>
         </form>
       </div>

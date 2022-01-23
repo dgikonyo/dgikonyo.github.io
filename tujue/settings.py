@@ -57,7 +57,9 @@ INSTALLED_APPS = [
     #adding our new application
     'disaster.apps.DisasterConfig',#this was automatically added in disaster/apps.py
     'rest_framework',
+    'crispy_forms',
 ]
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
