@@ -19,49 +19,150 @@
       </div>
     </section><!-- End Contact Section -->
     <section class="services">
-      <div class="container">
+    <!--  <div class="container">
+
         <form method="post" action="">
           <div class="row gtr-uniform">
             <div class="col-6 col-12-xsmall">
               <input type="text" name="sunshine" id="sunshine"  placeholder="Sunshine" Required step=any/>
             </div>
+
             <div class="col-6 col-12-xsmall">
               <input type="number" name="humidity9am" id="humidity9am"  placeholder="Humidity9am" Required step=any/>
             </div>
+
             <div class="col-6 col-12-xsmall">
               <input type="number" name="humidity3pm" id="humidity3pm"  placeholder="Humidity3pm" Required step=any/>
             </div>
+
             <div class="col-6 col-12-xsmall">
               <input type="number" name="pressure9am" id="pressure9am"  placeholder="Pressure9am" Required step=any/>
             </div>
+
             <div class="col-6 col-12-xsmall">
               <input type="number" name="pressure3pm" id="pressure3pm"  placeholder="Pressure3pm" Required step=any/>
             </div>
+
             <div class="col-6 col-12-xsmall">
               <input type="number" name="cloud9am" id="cloud9am"  placeholder="Cloud9am" Required step=any/>
             </div>
+
             <div class="col-6 col-12-xsmall">
               <input type="number" name="cloud3pm" id="cloud3pm"  placeholder="Cloud3pm" Required step=any/>
             </div>
+
             <div class="col-6 col-12-xsmall">
               <input type="number" name="temp9am" id="temp9am"  placeholder="Temp9am" Required step=any/>
             </div>
+
             <div class="col-6 col-12-xsmall">
               <input type="number" name="temp3pm" id="temp3pm"  placeholder="Temp3pm" Required step=any/>
             </div>
+
             <div class="col-6 col-12-xsmall">
               <input type="number" name="raintoday" id="raintoday"  placeholder="Rain Today" Required step=any/>
             </div>
-            <!--<div class="col-6 col-12-xsmall">
+            <div class="col-6 col-12-xsmall">
               <input type="number" name="risk_mm" id="risk_mm"  placeholder="RISK_MM" Required />
-            </div>-->
+            </div>
         
             <input type="submit" value="Submit"> 
           </div>
         </form>
       </div>
-    </section> 
+    </section> -->
+
+    <div class="form-body">
+      <div class="row">
+          <div class="form-holder">
+              <div class="form-content">
+                  <div class="form-items">
+                      <p>Fill in the data below.</p>
+                      <form class="requires-validation" novalidate method="post" action="">
+  
+                          <div class="col-md-12">
+                             <input class="form-control" type="number" name="sunshine" placeholder="Sunshine" required step="any">
+                             <div class="valid-feedback">Is valid!</div>
+                             <div class="invalid-feedback">Cannot be blank!</div>
+                          </div>
+  
+                          <div class="col-md-12">
+                              <input class="form-control" type="number" name="humidity9am" placeholder="Humidity9am" required step="any">
+                               <div class="valid-feedback">Is valid!</div>
+                               <div class="invalid-feedback">Cannot be blank!</div>
+                          </div>
+  
+                          <div class="col-md-12">
+                            <input class="form-control" type="number" name="humidity3pm" placeholder="Humidity3pm" required step="any">
+                             <div class="valid-feedback">Is valid!</div>
+                             <div class="invalid-feedback">Cannot be blank!</div>
+                          </div>
+  
+  
+                          <div class="col-md-12">
+                            <input class="form-control" type="number" name="pressure9am" placeholder="Pressure9am" required step="any">
+                            <div class="valid-feedback">Is valid!</div>
+                            <div class="invalid-feedback">Cannot be blank!</div>
+                          </div>
+  
+                          <div class="col-md-12">
+                            <input class="form-control" type="text" name="pressure3pm" placeholder="Pressure3pm" required step="any">
+                            <div class="valid-feedback">Is valid!</div>
+                            <div class="invalid-feedback">Cannot be blank!</div>
+                          </div>
+  
+                          <div class="col-md-12">
+                            <input class="form-control" type="number" name="cloud9am" placeholder="Cloud9am" required step="any">
+                            <div class="valid-feedback">Is valid!</div>
+                            <div class="invalid-feedback">Cannot be blank!</div>
+                          </div>
+       
+                
+                          <div class="col-md-12">
+                            <input class="form-control" type="number" name="cloud3pm" placeholder="Cloud3pm" required step="any">
+                            <div class="valid-feedback">Is valid!</div>
+                            <div class="invalid-feedback">Cannot be blank!</div>
+                          </div>
+  
+                          <div class="col-md-12">
+                            <input class="form-control" type="number" name="temp9am" placeholder="Temp9am" required step="any">
+                             <div class="valid-feedback">Is valid!</div>
+                             <div class="invalid-feedback">Cannot be blank!</div>
+                        </div>
+  
+                        <div class="col-md-12">
+                          <input class="form-control" type="number" name="temp3pm" placeholder="Temp3pm" required step="any">
+                           <div class="valid-feedback">Is valid!</div>
+                           <div class="invalid-feedback">Cannot be blank!</div>
+                        </div>
+  
+  
+  
+                        <div class="col-md-12">
+                          <input class="form-control" type="number" name="raintoday" placeholder="RainToday" required step="any">
+                          <div class="valid-feedback">Is valid!</div>
+                          <div class="invalid-feedback">Cannot be blank!</div>
+                        </div>
+  
+                        <div class="col-md-12">
+                          <input class="form-control" type="number" name="risk_mm" placeholder="Risk_MM" required step="any">
+                          <div class="valid-feedback">Is valid!</div>
+                          <div class="invalid-feedback">Cannot be blank!</div>
+                        </div>
+  
+                          <div class="form-button mt-3">
+                              <button id="submit" value="Submit" class="btn btn-primary">Predict</button>
+                          </div>
+                      </form>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
   </main>
+
+
+  
 
 
 {% endblock %}

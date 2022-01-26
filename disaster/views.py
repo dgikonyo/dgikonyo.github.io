@@ -96,38 +96,9 @@ class DisasterView(viewsets.ModelViewSet):
     queryset=Disaster.objects.all()#anytime I call the request, get all the values in the form
     serializer_class=DisasterSerializer
 
-
-"""#@api_view(["POST"])#is a decorator, will handle the post requests
-def disasterStatus(unit):#this is a view
-    try:
-        model=pickle.load(open("/home/gikonyo/Public/Personal/Projects/django_stuff/tujue/disaster/weatherModel_One.pkl","rb"))
-        y_pred=model.predict(unit)
-        newdf=pd.DataFrame(y_pred)     
-        #newdf=newdf.replace({1:'rain',0:'no rain'})
-        return newdf
-    except ValueError as e:
-        return Response(e.args[0],status.HTTP_400_BAD_REQUEST)"""
-
-        
+#recieves feature data for prediction       
 def FormView(request):
     if request.method=='POST':
-        #form=DisasterModelForm(request.POST)
-        #if form.is_valid():
-        """Sunshine=form.cleaned_data['Sunshine']
-        Humidity9am=form.cleaned_data['Humidity9am']
-        Humidity3pm=form.cleaned_data['Humidity3pm']
-        Pressure9am=form.cleaned_data['Pressure9am']
-        Pressure3pm=form.cleaned_data['Pressure3pm']
-        Cloud9am=form.cleaned_data['Cloud9am']
-        Cloud3pm=form.cleaned_data['Cloud3pm']
-        Temp9am=form.cleaned_data['Temp9am']
-        Temp3pm=form.cleaned_data['Temp3pm']
-        RainToday=form.cleaned_data['RainToday']
-        RISK_MM=form.cleaned_data['RISK_MM']
-        formDict=(request.POST).dict()  #will pick the POST data and saves it into a dictionary
-        formList=list(formDict)
-        formNp=np.array(formList)#form data converted to numpy array"""
-
         sunshine=request.POST["sunshine"]
         humidity9am=request.POST["humidity9am"]
         humidity3pm=request.POST["humidity3pm"]
@@ -138,17 +109,18 @@ def FormView(request):
         temp9am=request.POST["temp9am"]
         temp3pm=request.POST["temp3pm"]
         raintoday=request.POST["raintoday"]
+        risk_mm=request.POST["risk_mm"]
 
-        int_features=[int (x) for x in request.POST.values()]#will create a list called int_features
+        int_features=[float (x) for x in request.POST.values()]#will create a list called int_features
 
         formNp=[np.array(int_features)]#will form numpy array
 
-        model=pickle.load(open("/home/gikonyo/Public/Personal/Projects/django_stuff/tujue/disaster/weatherModel_One.pkl","rb"))
+        model=pickle.load(open("/home/gikonyo/Public/Personal/Projects/django_stuff/tujue/disaster/weatherModel_One_V1.pkl","rb"))
         y_pred=model.predict(formNp)
         newdf=pd.DataFrame(y_pred)            
             
         
-        prediction=newdf.replace({1:'Expecting rain tomorrow',0:'Expecting rain tomorrow'})
+        prediction=newdf.replace({1:'Expecting rain tomorrow',0:'No rain tomorrow'})
         
         if sunshine>="15" and humidity9am>="110" and humidity3pm>="100" and pressure9am>="1034":
             flood_alert="Expecting Flood"
@@ -169,6 +141,7 @@ def FormView(request):
 
     return render(request,'disaster/disaster_form.html',{"form":form})
 
+#for the register form.
 def register_request(request):
     if request.method== "POST":
         form=NewUserForm(request.POST)
